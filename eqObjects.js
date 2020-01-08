@@ -25,7 +25,7 @@ Because if you can go through all those tests and no return false is triggered, 
 
 const eqArrays = function(array1, array2) {
   
-  if(array1.length !== array2.length) {
+  if (array1.length !== array2.length) {
     return false;
   }
 
@@ -40,9 +40,9 @@ const eqArrays = function(array1, array2) {
 
 const eqObjects = function(object1, object2) {
   
-  if(Object.keys(object1).length !== Object.keys(object2).length) return false;
+  if (Object.keys(object1).length !== Object.keys(object2).length) return false;
   
-  for(let key in object1) {
+  for (let key in object1) {
 
     if (Array.isArray(object1[key])) {
       
@@ -52,7 +52,7 @@ const eqObjects = function(object1, object2) {
     
   }
   return true;
-}
+};
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
