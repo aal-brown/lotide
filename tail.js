@@ -8,3 +8,4 @@ const tail = function(array) {
 
 module.exports = tail;
 
+console.log(tail([5]))
