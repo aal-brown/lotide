@@ -62,3 +62,5 @@ console.log(results1);
 
 assertArraysEqual(results1,[1, 2, 5, 7, 2]);
 assertArraysEqual(results2,[1, 2, 5]);
+
+module.exports = takeUntil;

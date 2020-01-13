@@ -45,3 +45,4 @@ assertArraysEqual(map(words, word => word.length), [6, 7, 2, 5, 3]);
 assertArraysEqual(map([1,2,3,4,5], value => (value % 2 === 0)), [false, true, false, true, false]);
 
 
+module.exports = map;

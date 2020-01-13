@@ -30,3 +30,5 @@ let letterPositions = function(stringInput) {
 
 console.log(letterPositions("Lighthouse in the house"));
 console.log(letterPositions("LLlllll o oOO jkawdopmpko"));
+
+module.exports = letterPositions;

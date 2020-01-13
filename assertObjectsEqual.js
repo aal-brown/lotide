@@ -42,3 +42,5 @@ const assertObjectsEqual = function(inpObj1, inpObj2) {
 };
 
 assertObjectsEqual({a:1,b:2,c:3,d:undefined},{a:1,b:2,d:4});
+
+module.exports = assertObjectsEqual;
