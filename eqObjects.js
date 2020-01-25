@@ -44,28 +44,59 @@ const eqObjects = function(object1, object2) {
   
   for (let key in object1) {
 
-    if (Array.isArray(object1[key])) {
-      
-      if (eqArrays(object1[key], object2[key]) !== true) return false;
+    if (typeof object1[key] === "object") {
+
+      if (Array.isArray(object1[key])) {
+        return eqArrays(object1[key], object2[key]);
     
-    }  else if (object1[key] !== object2[key]) return false;
+      }  else {
+        return eqObjects(object1[key], object2[key]);
+      }
     
+    } else if (object1[key] !== object2[key]) {
+      return false;
+    }
   }
   return true;
 };
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
-console.log(eqObjects(ab, ba)); // => true
+// console.log(eqObjects(ab, ba)); // => true
 
 const abc = { a: "1", b: "2", c: "3" };
-console.log(eqObjects(ab, abc)); // => false
+// console.log(eqObjects(ab, abc)); // => false
 
 const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
-console.log(eqObjects(cd, dc)); // => true
+// console.log(eqObjects(cd, dc)); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
-console.log(eqObjects(cd, cd2)); // => false
+// console.log(eqObjects(cd, cd2)); // => false
 
 module.exports = eqObjects;
+
+const abcd = { a: 1, b: 2, c: {d: 3}};
+const dcba = { c: {d: 3}, b: 2, a: 1 };
+// console.log(eqObjects(abcd, dcba)); // => ?
+// console.log(Object.keys(abcd) === Object.keys(dcba));
+// console.log(Object.keys(abcd))
+// console.log(Object.keys(dcba))
+
+
+console.log(eqObjects(abcd, dcba));
+
+eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => true
+
+eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => false
+eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }) // => false
+
+console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }))
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }))
+console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }))
+
+
+console.log(eqObjects({ a: { z: [1,2,3,4,5] }, b: 2 }, { a: { z: [1,2,3,4,5] }, b: 2 }))
+
+
+console.log(eqObjects({ a: { z: [1,2,3,4,5] }, b: 2 }, { a: { z: [1,2,3,4,5] }, b: 2 }))
